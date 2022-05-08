@@ -1,0 +1,76 @@
+version: '3.8'
+
+volumes:
+  mariadb-volume:
+  wordpress-volume:
+
+networks:
+  docker-network:
+
+services:
+  nginx:
+    image: nginx:nginx
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+      args:
+        - WP_SITE=${WP_SITE}
+    #volumes:
+    #  - wordpress-volume:/var/www/${WP_SITE}
+    #networks:
+    #  - wp-network
+    ports:
+      - "443:443"
+    #depends_on:
+    #  - mariadb
+    #  - wordpress
+    restart: always
+
+  #mariadb:
+  #  image: mariadb:mariadb
+  #  container_name: mariadb
+  #  build:
+  #    context: ./requirements/mariadb
+  #  volumes:
+  #    - mariadb-volume:/var/lib/mysql
+  #  environment:
+  #    - WP_DB=${WP_DB}
+  #    - MARIADB_ADMIN=${MARIADB_ADMIN}
+  #    - MARIADB_ROOT_PWD=${MARIADB_ROOT_PWD}
+  #    - MARIADB_ADMIN_PWD=${MARIADB_ADMIN_PWD}
+  #    - MARIADB_USER=${MARIADB_USER}
+  #    - MARIADB_USER_PWD=${MARIADB_USER_PWD}
+  #  networks:
+  #    - wp-network
+  #  ports:
+  #    - "3306:3306"
+  #  restart: unless-stopped
+
+  #wordpress:
+  #  image: wordpress:wordpress
+  #  container_name: wordpress
+  #  build:
+  #    context:  ./requirements/wordpress
+  #    args:
+  #      - WP_DIR=${WP_DIR}
+  #  environment:
+  #    ## Wordpress Access
+  #    - WP_DIR=${WP_DIR}
+  #    - WP_URL=${WP_URL}
+  #    - WP_ADMIN=${WP_ADMIN}
+  #    - WP_ADMIN_PWD=${WP_ADMIN_PWD}
+  #    - WP_ADMIN_EMAIL=${WP_ADMIN_EMAIL}
+  #    ## Mariadb Access
+  #    - WP_DB=${WP_DB}
+  #    - MARIADB_USER=${MARIADB_USER}
+  #    - MARIADB_USER_PWD=${MARIADB_USER_PWD}
+  #    - MARIADB_HOST=${MARIADB_HOST}
+  #  volumes:
+  #    - wordpress-volume:${WP_DIR}
+  #  networks:
+  #    - wp-network
+  #  ports:
+  #    - "9000:9000"
+  #  depends_on:
+  #    - mariadb
+  #  restart: unless-stopped
