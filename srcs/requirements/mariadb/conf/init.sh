@@ -20,7 +20,7 @@ else
 	# Run init.sql script
     mariadb -u root < init.sql
 	
-	# create .init file
+	# create temp file
     touch .init_done
     echo "init setup done"
     echo "remove init.sql"
