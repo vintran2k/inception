@@ -24,7 +24,7 @@ if [ -e .install_done ]
 			--admin_email=${WP_ADMIN_EMAIL} \
 			--skip-email
 			# Create 2nd user
-			wp user create ${WP_USER} ${WP_USER_EMAIL} --role=author --password=${WP_USER_PWD}
+			wp user create --path=${WP_DIR}/html ${WP_USER} ${WP_USER_EMAIL} --role=author --user_pass=${WP_USER_PWD}
 			# create a temp file
 			touch .install_done
 		fi
