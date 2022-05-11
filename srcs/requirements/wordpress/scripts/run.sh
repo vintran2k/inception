@@ -9,13 +9,13 @@ if [ -e .install_done ]
 		sleep 5;
 		# Check that the connection is established using mysqladmin ping
 		if ! mysqladmin --host=$MARIADB_HOST \
-					--user=$MARIADB_USER \
-					--password=$MARIADB_USER_PWD \
-					--wait=30 ping > /dev/null ; then
+						--user=$MARIADB_USER \
+						--password=$MARIADB_USER_PWD \
+						--wait=30 ping > /dev/null ; then
 			echo "ERROR : SQL not connected"
 			exit 1;
 		else
-			# Install Wordpress using the CLI
+			# Install and init Wordpress using the CLI
 			wp core install --path=${WP_DIR}/html \
 			--url=${WP_URL} \
 			--title=Inception \

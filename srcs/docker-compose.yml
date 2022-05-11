@@ -63,7 +63,7 @@ services:
       args:
         - WP_DIR=${WP_DIR}
     environment:
-      ## Wordpress Access
+      # Wordpress Access
       - WP_DIR=${WP_DIR}
       - WP_URL=${WP_URL}
       - WP_ADMIN=${WP_ADMIN}
@@ -72,7 +72,7 @@ services:
       - WP_USER=${WP_USER}
       - WP_USER_PWD=${WP_USER_PWD}
       - WP_USER_EMAIL=${WP_USER_EMAIL}
-      ## Mariadb Access
+      # Mariadb Access
       - WP_DB=${WP_DB}
       - MARIADB_USER=${MARIADB_USER}
       - MARIADB_USER_PWD=${MARIADB_USER_PWD}

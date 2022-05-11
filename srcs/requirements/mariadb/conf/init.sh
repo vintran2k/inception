@@ -10,7 +10,6 @@ else
     echo "start mariadb and setup"
 	
 	# use envsubst to set passwords and users
-	# into the init.sql script
     envsubst < init_var.sql > init.sql
 	
 	# Start mysql in safe mode
@@ -21,12 +20,12 @@ else
     mariadb -u root < init.sql
 	
 	# create temp file
-    touch .init_done
     echo "init setup done"
+    touch .init_done
     echo "remove init.sql"
 	rm init.sql
-    echo "start mariadb"
 	
 	# Start MYSQL
+    echo "start mariadb"
     /usr/bin/mysqld
 fi
